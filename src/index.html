@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <style>
-      #root {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-      }
+			html {
+				min-height:100%;/* make sure it is at least as tall as the viewport */
+				margin: 0px;
+			}
       body {
         margin: 0px;
         font-family: "72", "Helvetica Neue", Helvetica, Arial, sans-serif;
+				height: 100%;
       }
-      * {
-        box-sizing: border-box;
-      }
+			#root {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+			}
     </style>
   </head>
   <body>
