@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Getting started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+This was made with npm `9.4.2` and might not work for earlier or later major versions.
 
-## Available Scripts
+Run `npm install` to setup dependencies, then run the app with `npm run start`.
 
-In the project directory, you can run:
+The app will run on `localhost:3000`, but the port can be changed in `webpack.config.base.js`
 
-### `npm start`
+# What is this?
+This boilerplate code is a combination of React, React Redux, and Webpack. The actual code is configured for `typescript`, but `javascript` is also enabled.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## React
+React is library for user interfaces which is concerned only with rendering. [See React's official website for more information](https://reactjs.org/).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## React Redux
+Redux is essentially a predictable state container. Rather than needing to worry about `useState` throughout the project, Redux can manage state updates and propogate state changes for you (however, don't just throw all your stateful needs on Redux. `useState` is still good to use whenever that state is contained within one file). [See Redux's official website for more information](https://react-redux.js.org/)
 
-### `npm test`
+### Where is it?
+The sample code for Redux is in the `src/state` folder. The `hooks` and `store` files are pretty standard and won't need to be modified for the most part. The main logic is within the `exampleSlice`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Webpack
+Webpack takes modules with dependencies and bundles them into static assets to make life easy. It also enables us to use cool things like `less`, which is an awesome version of `.css` files. The webpack files include
+- `webpack.config.base.js`
+- `webpack.config.dev.js`
+- `webpack.config.prod.js`
+- `tsconfig.json`
+- `babel.config.json`
+- And potentially others that I forgot
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[See Webpack's official website for more information](https://webpack.js.org/concepts/why-webpack/)
