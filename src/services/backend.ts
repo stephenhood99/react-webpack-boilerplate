@@ -1,5 +1,6 @@
-import axios, { type AxiosResponse } from 'axios';
 
-export async function getItem(id: string): Promise<AxiosResponse> {
-	return axios.get(id);
+
+export async function getNextItem(num: number): Promise<number> {
+	await new Promise( resolve => setTimeout(resolve, 1000) );
+	return num + 1;
 }

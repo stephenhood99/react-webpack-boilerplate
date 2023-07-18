@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getItem } from 'services/backend';
+import { getNextItem } from 'services/backend';
 import { RootState } from './store';
 
 export interface ExampleState {
-	items: string[];
+	value: number;
 }
 
 const initialState: ExampleState = {
-	items: [],
+	value: 0,
 };
 
-export interface ActionFetchItem {
-	id: string;
+export interface ActionFetchNextItem {
+	current: number;
 }
 
-export const fetchItem = createAsyncThunk(
-	'example/fetchItem',
-	async(action: ActionFetchItem, thunkApi) => {
-		thunkApi.dispatch(exampleSlice.actions._fetchItem(action));
-		return await getItem(action.id);
+export const incrementValue = createAsyncThunk(
+	'example/incrementValue',
+	async(action: ActionFetchNextItem, thunkApi) => {
+		thunkApi.dispatch(exampleSlice.actions._incrementValue(action));
+		return await getNextItem(action.current);
 	}
 );
 
@@ -26,28 +26,31 @@ const exampleSlice = createSlice({
 	name: 'example',
 	initialState,
 	reducers: {
-		_fetchItem: (state, action) => {
+		_incrementValue: (state, action) => {
+			console.log('hit _incrementValue');
 			// Do something with state
 		}
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchItem.pending, (state, action) => {
+		builder.addCase(incrementValue.pending, (state, action) => {
+			console.log('pending');
 			// Do something
 		});
-		builder.addCase(fetchItem.rejected, (state, action) => {
+		builder.addCase(incrementValue.rejected, (state, action) => {
 			// Do something
 		});
-		builder.addCase(fetchItem.fulfilled, (state, action) => {
-			state.items.push(action.payload.data);
+		builder.addCase(incrementValue.fulfilled, (state, action) => {
+			console.log('fulfilled');
+			state.value = action.payload;
 		});
 	},
 });
 export const exampleState = exampleSlice.getInitialState();
 
-export const getItems = (state: RootState) => {
-	return state.example.items;
-	// this can be called with const items = useAppSelector(getItems);
-	// the data can also be obtained with const items = useAppSelector((state) => state.example.items);
+export const getValue = (state: RootState) => {
+	return state.example.value;
+	// this can be called with const items = useAppSelector(getValue);
+	// the data can also be obtained with const items = useAppSelector((state) => state.example.value);
 };
 
 export default exampleSlice.reducer;
